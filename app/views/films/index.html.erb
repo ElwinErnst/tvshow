@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Films</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Genere ID</th>
+      <th>Genere</th>
+      <th>Cant Temporadas</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @films.each do |film| %>
+      <tr>
+        <td><%= film.id %></td>
+        <td><%= film.name %></td>
+        <td><%= film.description %></td>
+        <td><%= film.genere_id %></td>
+        <td><%= film.genere.name %></td>
+        <td><%= film.seasons.ids.count %></td>
+        <td><%= link_to 'Show', film %></td>
+        <td><%= link_to 'Edit', edit_film_path(film) %></td>
+        <td><%= link_to 'Destroy', film, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View Seasons', seasons_path(:film_id => film.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Film', new_film_path %>

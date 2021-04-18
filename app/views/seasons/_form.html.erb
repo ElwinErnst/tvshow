@@ -1,0 +1,32 @@
+<%= form_with(model: season) do |form| %>
+  <% if season.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(season.errors.count, "error") %> prohibited this season from being saved:</h2>
+
+      <ul>
+        <% season.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :begins_at %>
+    <%= form.datetime_select :begins_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :film_id %>
+    <%= form.collection_select(:film_id, Film.all,:id, :name) %> <!-- esto hace que los generos se desplieguen en una lista.-->
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Generes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cant Films: </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @generes.each do |genere| %>
+      <tr>
+        <td><%= genere.name %></td>
+        <td><%= genere.films.count %></td>
+        <td><%= link_to 'Show', genere %></td>
+        <td><%= link_to 'Edit', edit_genere_path(genere) %></td>
+        <td><%= link_to 'Destroy', genere, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Genere', new_genere_path %>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Seasons</h1>
+
+<form method='input' action='/films'>
+  Film: <input type=integer name='f'/>
+  <input type='submit' />
+</form><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Number</th>
+      <th>Begins at</th>
+      <th>Film_ID</th>
+      <th>Film Name</th>
+      <th>Total Duration</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seasons.each do |season| %>
+      <tr>
+        <td><%= season.id %></td>
+        <td><%= season.number %></td>
+        <td><%= season.begins_at %></td>
+        <td><%= season.film_id %></td>
+        <td><%= season.film.name %></td>
+        <td><%= season.episodes.sum(:minutes) %></td>
+        <td><%= link_to 'Show', season %></td>
+        <td><%= link_to 'Edit', edit_season_path(season) %></td>
+        <td><%= link_to 'Destroy', season, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View Episodes', episodes_path(:season_id => season.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Season', new_season_path %>
